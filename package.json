@@ -1,12 +1,20 @@
 {
   "name": "my-customhook-collection",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Mi Colección especial de CustomHooks",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "jscalderon65",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jscalderon65/my-customhook-collection.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jscalderon65/my-customhook-collection/issues"
+  },
+  "homepage": "https://github.com/jscalderon65/my-customhook-collection#readme"
 }
