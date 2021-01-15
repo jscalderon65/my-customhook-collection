@@ -3,25 +3,25 @@
 _Mi Colección especial de CustomHooks._
 _Está versión incluye los siguientes hooks:_
 
-*useMediaQuery
+- useMediaQuery
 
-*useFetch
+- useFetch
 
-*useForm
+- useForm
 
 ## Instalación
 
 _Con nmp_
 
-```
+```js
 $ npm install my-customhook-collection
 ```
 
 ## ¿Comó usarlos?
 
-_La importación de cualquier hook se debe realizar de la siguiente manera_
+_La importación de cualquier hook se debe realizar de la siguiente manera:_
 
-```
+```js
 import {/*nombre del hook*/} from 'my-customhook-collection';
 ```
 
@@ -31,7 +31,7 @@ _CustomHook que imita el funcionamiento de los media queries de CSS._
 _Ejemplo de uso:_
 
 
-```
+```js
 import {useMediaQuery} from 'my-customhook-collection';
 
 const App=()=>{
@@ -49,7 +49,7 @@ export default App
 _CustomHook para realizar peticiones http con el método fetch._
 _Ejemplo de uso:_
 
-```
+```js
 import {useFetch} from 'my-customhook-collection';
 
 const App=()=>{
@@ -72,7 +72,7 @@ export default App
 _CustomHook para el manejo de formularios._
 _Ejemplo de uso:_
 
-```
+```js
 import {useForm} from 'my-customhook-collection';
 
 const App=()=>{
