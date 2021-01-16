@@ -11,7 +11,7 @@ _Está versión incluye los siguientes hooks:_
 
 ## Instalación
 
-_Con nmp_
+_Con npm_
 
 ```js
 $ npm install my-customhook-collection
