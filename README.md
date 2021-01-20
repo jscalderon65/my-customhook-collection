@@ -1,4 +1,4 @@
-# my-customhook-collection
+# my-customhook-collection V-1.1.0
 
 _Mi Colección especial de CustomHooks._
 _Está versión incluye los siguientes hooks:_
@@ -9,9 +9,15 @@ _Está versión incluye los siguientes hooks:_
 
 - useForm
 
+- FirebaseHooks:
+
+  - useOnSnapshotCollection
+
+  - useOnSnapshotDoc
+
 ## Instalación
 
-_Con nmp_
+_Con npm_
 
 ```js
 $ npm install my-customhook-collection
@@ -76,7 +82,7 @@ _Ejemplo de uso:_
 import {useForm} from 'my-customhook-collection';
 
 const App=()=>{
-    const [{name},handleInputChange] = useForm({
+    const [{name},handleInputChange, setValues] = useForm({
         name:""
     });
     <div >
@@ -92,7 +98,70 @@ const App=()=>{
 export default App
 ```
 
-## Créditos
+## Firebase CustomHooks
+
+### useOnSnapshotCollection
+_CustomHook para el manejo de datos en tiempo real de una colección en firestore, en donde cada vez que ocurra un cambio este hook retornará un array de objetos con el id y los datos que contenga cada documento de la colección._
+_Ejemplo de uso:_
+
+```js
+import firebase from "firebase/app";
+import "firebase/firestore";
+import {useOnSnapshotCollection} from 'my-customhook-collection';
+
+const App=()=>{
+    firebase.initializeApp({
+      apiKey: "#####",
+      authDomain: "#####",
+      projectId: "#####",
+      storageBucket: "#####",
+      messagingSenderId: "#####",
+      appId: "#####",
+      measurementId: "#####"
+    });
+    const db = firebase.firestore();
+    const refColl = db.collection("TestCollection");
+    const [Data] = useForm(refColl);
+    <div >
+    {Data&&Data.map(doc=><li key={doc.id}>{doc.id}</li>)}
+    </div>
+}
+export default App
+```
+
+### useOnSnapshotDoc
+_CustomHook para el manejo de datos en tiempo real de un documento en firestore, el hook retorna un objeto con los datos y el id del documento._
+_Ejemplo de uso:_
+
+```js
+import firebase from "firebase/app";
+import "firebase/firestore";
+import {useOnSnapshotDoc} from 'my-customhook-collection';
+
+const App=()=>{
+    firebase.initializeApp({
+      apiKey: "#####",
+      authDomain: "#####",
+      projectId: "#####",
+      storageBucket: "#####",
+      messagingSenderId: "#####",
+      appId: "#####",
+      measurementId: "#####"
+    });
+    const db = firebase.firestore();
+    const refDoc = db.collection("TestCollection").doc("TestDoc");
+    const [Data] = useForm(refColl);
+    console.log({Data});
+    return(
+    <div>
+      {Data.Id}
+    </div>
+    )
+}
+export default App
+```
+
+# Créditos
 
 _Los CustomHooks publicados en esta dependencia fueron codificados gracias a:_
 

@@ -12,6 +12,6 @@ const useForm = (Values) => {
       [target.name]: target.value,
     }));
   };
-  return [FormValues, handleInputChange];
+  return [FormValues, handleInputChange, setFormValues];
 };
 export default useForm;

@@ -1,4 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import {
+  useState,
+  useEffect,
+  useRef
+} from "react";
 
 const useFetch = (url) => {
   const isMounted = useRef(true);
@@ -7,7 +11,7 @@ const useFetch = (url) => {
     loading: true,
     error: null,
   });
-  
+
   useEffect(() => {
     return () => {
       isMounted.current = false;
@@ -23,7 +27,7 @@ const useFetch = (url) => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        if(isMounted){
+        if (isMounted) {
           setState({
             loading: false,
             error: null,
