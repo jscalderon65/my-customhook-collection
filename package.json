@@ -1,6 +1,6 @@
 {
   "name": "my-customhook-collection",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Mi Colección especial de CustomHooks",
   "main": "src/index.js",
   "scripts": {

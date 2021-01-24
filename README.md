@@ -1,4 +1,4 @@
-# my-customhook-collection V-1.1.0
+# my-customhook-collection V-1.3.0
 
 _Mi Colección especial de CustomHooks._
 _Está versión incluye los siguientes hooks:_
@@ -14,6 +14,8 @@ _Está versión incluye los siguientes hooks:_
   - useOnSnapshotCollection
 
   - useOnSnapshotDoc
+
+  - useFirebaseUser
 
 ## Instalación
 
@@ -105,23 +107,32 @@ _CustomHook para el manejo de datos en tiempo real de una colección en firestor
 _Ejemplo de uso:_
 
 ```js
+/*Nombre del componente FirebaseConfig*/
 import firebase from "firebase/app";
 import "firebase/firestore";
+import "firebase/auth";
+
+firebase.initializeApp({
+  apiKey: "########",
+  authDomain: "########",
+  projectId: "########",
+  storageBucket: "########",
+  messagingSenderId: "########",
+  appId: "########",
+  measurementId: "########"
+});
+
+export {firebase};
+```
+
+```js
+import {firebase} from "./FirebaseConfig";
 import {useOnSnapshotCollection} from 'my-customhook-collection';
 
 const App=()=>{
-    firebase.initializeApp({
-      apiKey: "#####",
-      authDomain: "#####",
-      projectId: "#####",
-      storageBucket: "#####",
-      messagingSenderId: "#####",
-      appId: "#####",
-      measurementId: "#####"
-    });
     const db = firebase.firestore();
     const refColl = db.collection("TestCollection");
-    const [Data] = useForm(refColl);
+    const [Data] = useOnSnapshotCollection(refColl);
     <div >
     {Data&&Data.map(doc=><li key={doc.id}>{doc.id}</li>)}
     </div>
@@ -134,23 +145,13 @@ _CustomHook para el manejo de datos en tiempo real de un documento en firestore,
 _Ejemplo de uso:_
 
 ```js
-import firebase from "firebase/app";
-import "firebase/firestore";
+import {firebase} from "./FirebaseConfig";
 import {useOnSnapshotDoc} from 'my-customhook-collection';
 
 const App=()=>{
-    firebase.initializeApp({
-      apiKey: "#####",
-      authDomain: "#####",
-      projectId: "#####",
-      storageBucket: "#####",
-      messagingSenderId: "#####",
-      appId: "#####",
-      measurementId: "#####"
-    });
     const db = firebase.firestore();
     const refDoc = db.collection("TestCollection").doc("TestDoc");
-    const [Data] = useForm(refColl);
+    const [Data] = useOnSnapshotDoc(refColl);
     console.log({Data});
     return(
     <div>
@@ -161,10 +162,34 @@ const App=()=>{
 export default App
 ```
 
-# Créditos
+### useFirebaseUser
+_CustomHook para el manejo de sesión y objeto de datos que proporciona la autenticación de usuarios en firebase, el hook retorna un array el cual contiene un objeto y un valor booleano, el objeto contiene la información del CurrentUser y el valor booleano representa si hay o no alguien logueado, si el valor booleano es false, el objeto con la información de usuario será null  :_
+_Ejemplo de uso:_
 
+```js
+import {firebase} from "./FirebaseConfig";
+import {useFirebaseUser} from 'my-customhook-collection';
+
+const App=()=>{
+    const [UserInfo,isOn] = useFirebaseUser(firebase);
+    console.log({UserInfo,isOn});
+    return(
+    <div>
+      {isOn?
+      <p>{UserInfo.displayName} ha iniciado sesión<p>:
+      <p>No hay nadie logueado</p>
+      }
+    </div>
+    )
+}
+export default App
+```
+
+# Créditos
 _Los CustomHooks publicados en esta dependencia fueron codificados gracias a:_
 
 - **Alejandro García Anglada** - _Creador del CustomHook useMediaQuery_ - [Alejandro García Anglada](https://www.youtube.com/user/aganglada91)
 
 - **Fernando Herrera** - _Profesor del curso "React: De cero a experto (Hooks y MERN)"_ - [Fernando Herrera](https://www.udemy.com/course/react-cero-experto/#instructor-1)
+
+- **Codealo** - _Canal de youtube de donde se saco la idea de los hooks useOnSnapshotCollection y useOnSnapshotDoc_ - [Codealo](https://www.youtube.com/channel/UCLdBO2AVbCohANbEtEHn1CA/featured)

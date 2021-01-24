@@ -5,3 +5,4 @@ export {
   useOnSnapshotCollection,
   useOnSnapshotDoc,
 } from "./FirebaseHooks/useOnSnapshot";
+export { default as useFirebaseUser } from "./FirebaseHooks/useFirebaseUser";
