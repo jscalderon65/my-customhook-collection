@@ -14,6 +14,7 @@ const useFirebaseUser = (firebase) => {
     });
     useEffect(() => {
         setUserInfo(firebase.auth().currentUser);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [User]);
     return [UserInfo, User]
 }
