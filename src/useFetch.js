@@ -7,7 +7,7 @@ import {
 const useFetch = (url) => {
   const isMounted = useRef(true);
   const [state, setState] = useState({
-    data: null,
+    data: [],
     loading: true,
     error: null,
   });
@@ -20,7 +20,7 @@ const useFetch = (url) => {
 
   useEffect(() => {
     setState({
-      data: null,
+      data: [],
       loading: true,
       error: null,
     });

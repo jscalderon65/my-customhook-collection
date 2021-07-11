@@ -7,7 +7,7 @@ const useOnSnapshotCollection = (ref) => {
   const isMounted = useRef(true);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [dataValues, setDataValues] = useState("");
+  const [dataValues, setDataValues] = useState([]);
 
   useEffect(() => {
     return () => {
@@ -21,13 +21,13 @@ const useOnSnapshotCollection = (ref) => {
       .onSnapshot(
         (snapshot) => {
           if (isMounted.current) {
-            setLoading(false);
             setDataValues(
               snapshot.docs.map((item) => ({
                 id: item.id,
                 ...item.data()
               }))
-            );
+              );
+            setLoading(false);
           }
         },
         (err) => {
@@ -38,14 +38,14 @@ const useOnSnapshotCollection = (ref) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setDataValues]);
 
-  return [dataValues, error, loading];
+  return [dataValues, loading, error];
 
 };
 const useOnSnapshotDoc = (ref) => {
   const isMounted = useRef(true);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [dataValues, setDataValues] = useState("");
+  const [dataValues, setDataValues] = useState([]);
 
   useEffect(() => {
     return () => {
@@ -73,7 +73,7 @@ const useOnSnapshotDoc = (ref) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setDataValues]);
 
-  return [dataValues, error, loading];
+  return [dataValues, loading, error];
 
 };
 export {
